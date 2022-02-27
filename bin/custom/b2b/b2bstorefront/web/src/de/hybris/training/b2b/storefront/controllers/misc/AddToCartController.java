@@ -24,7 +24,9 @@ import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
+import de.hybris.platform.servicelayer.event.EventService;
 import de.hybris.platform.util.Config;
+import de.hybris.training.b2b.core.event.AddToCartEvent;
 import de.hybris.training.b2b.storefront.controllers.ControllerConstants;
 
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ import javax.validation.Valid;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,6 +76,9 @@ public class AddToCartController extends AbstractController
 
 	@Resource(name = "groupCartModificationListPopulator")
 	private GroupCartModificationListPopulator groupCartModificationListPopulator;
+
+	@Autowired
+	private EventService eventService;
 
 	@RequestMapping(value = "/cart/add", method = RequestMethod.POST, produces = "application/json")
 	public String addToCart(@RequestParam("productCodePost") final String code, final Model model,
@@ -120,6 +126,9 @@ public class AddToCartController extends AbstractController
 
 		model.addAttribute("product", productFacade.getProductForCodeAndOptions(code, Arrays.asList(ProductOption.BASIC)));
 
+		AddToCartEvent addToCartEvent = new AddToCartEvent();
+		addToCartEvent.setFullName("DEADPOOL");
+		eventService.publishEvent(addToCartEvent);
 		return ControllerConstants.Views.Fragments.Cart.AddToCartPopup;
 	}
 

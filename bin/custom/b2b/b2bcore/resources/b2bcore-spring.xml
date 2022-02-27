@@ -546,6 +546,11 @@
 		<property name="timeService" ref="timeService" />
 	</bean>
 
+	<bean id="addToCartEventListener"
+			class="de.hybris.training.b2b.core.event.AddToCartEventListener"
+			parent="abstractEventListener">
+	</bean>
+
 	<import resource="/b2bcore/processes/quote/quote-buyer-process-spring.xml"/>
 	<import resource="/b2bcore/processes/quote/quote-salesrep-process-spring.xml"/>
 	<import resource="/b2bcore/processes/quote/quote-seller-approval-process-spring.xml"/>
