@@ -28,23 +28,43 @@ node_modules
 classes
 hybris/bin/**/bin
 gensrc/
+testclasses
+eclipsebin
 
 # Folders to ignore at the root of the repository
+licenses/
+roles/
 log/
 temp/
 data/
-licenses/
-hybris/sampleconfigurations/
 
   
 # filter only custom extension
 bin/*
 !bin/custom/
- 
+config/*
+!config/customize/
+!config/local.properties
+!config/localextensions.xml
+
 # Absolute path to ignore
-config/local.properties
- 
+# config/local.properties
+
+#IDE files
+.gradle
+.idea
+idea-module-files
+*.iml
+com.springsource.sts.config.flow.prefs
+org.sonar.ide.eclipse.core.prefs
+HybrisCodeGeneration.launch
+
+org.springframework.ide.eclipse.beans.core.prefs
+org.springframework.ide.eclipse.core.prefs
+.springBeans 
+
 # Filename patterns to ignore
+lib/.lastupdate
 *.class
 build.xml
 Generated*.java
@@ -58,6 +78,8 @@ beans.xsd
 ruleset.xml
 *.log
 base.properties
+.pmd
+*build.number
 
 
 #  Addon specific copy folders
@@ -66,4 +88,19 @@ base.properties
 **/tld/addons
 **/tags/addons
 **/messages/addons
+**/lib/addons
+**/web/addonsrc
+**/_ui-src/addons
+**/web/addontestsrc
+**/web/commonwebsrc/*/
+**/web/webroot/WEB-INF/lib/addon-*
+wro_addons.xml
+
+# Backoffice artifacts
 *_bof.jar
+
+# project ignore
+/build/
+/dependencies/
+/cloud-extension-pack/
+gradle.properties
