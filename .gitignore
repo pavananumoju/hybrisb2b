@@ -28,8 +28,7 @@ node_modules
 classes
 hybris/bin/**/bin
 gensrc/
-eclipsebin/
- 
+
 # Folders to ignore at the root of the repository
 log/
 temp/
